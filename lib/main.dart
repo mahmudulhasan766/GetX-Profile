@@ -3,37 +3,50 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_profile/second_screen.dart';
 import 'package:getx_profile/third_screen.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'counter.dart';
 import 'first_screen.dart';
 import 'language.dart';
 
-void main() {
-  runApp(GetMaterialApp(
-    // It is not mandatory to use named routes, but dynamic urls are interesting.
-    initialRoute: '/home',
-    defaultTransition: Transition.native,
-    translations: MyTranslations(),
-    locale: Locale('pt', 'BR'),
-    getPages: [
-      //Simple GetPage
-      GetPage(name: '/home', page: () => First()),
-      // GetPage with custom transitions and bindings
-      GetPage(
-        name: '/second',
-        page: () => Second(),
-        customTransition: SizeTransitions(),
-        binding: SampleBind(),
-      ),
-      // GetPage with default transitions
-      GetPage(
-        name: '/third',
-        transition: Transition.cupertino,
-        page: () => Third(),
-      ),
-    ],
-   )
+void main() async{
+  await GetStorage.init();
+  runApp(
+      MyApp()
   );
+}
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
+      // It is not mandatory to use named routes, but dynamic urls are interesting.
+      initialRoute: '/home',
+      defaultTransition: Transition.native,
+      translations: MyTranslations(),
+      locale: Locale('pt', 'BR'),
+      getPages: [
+        //Simple GetPage
+        GetPage(name: '/home', page: () => First()),
+        // GetPage with custom transitions and bindings
+        GetPage(
+          name: '/second',
+          page: () => Second(),
+          customTransition: SizeTransitions(),
+          binding: SampleBind(),
+        ),
+        // GetPage with default transitions
+        GetPage(
+          name: '/third',
+          transition: Transition.cupertino,
+          page: () => Third(),
+        ),
+      ],
+    );
+  }
 }
 
 

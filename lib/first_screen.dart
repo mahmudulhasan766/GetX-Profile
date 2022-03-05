@@ -49,6 +49,7 @@ class First extends StatelessWidget {
           child: Icon(Icons.add),
           onPressed: () {
             Get.find<Controller>().increment();
+            //Get.find<Controller>().putCount(_count)
           }),
     );
   }

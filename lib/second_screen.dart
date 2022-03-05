@@ -31,10 +31,10 @@ class Second extends GetView<ControllerX> {
               return Text('${controller.sum}');
             }),
             Obx(
-                  () => Text('Name: ${controller.user.value?.name}'),
+                  () => Text('Name: ${controller.user.value.name}'),
             ),
             Obx(
-                  () => Text('Age: ${controller.user.value?.age}'),
+                  () => Text('Age: ${controller.user.value.age}'),
             ),
             ElevatedButton(
               child: Text("Go to last page"),
