@@ -4,18 +4,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
+import 'package:getx_profile/main.dart';
 
 import 'counter.dart';
 
 class First extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.add),
           onPressed: () {
-            Get.snackbar("Hi", "I'm modern snackbar");
+            Get.snackbar("Hi", "I'm modern snackbar${box.read("read")}");
           },
         ),
         title: Text("title".trArgs(['John'])),
@@ -28,7 +30,7 @@ class First extends StatelessWidget {
                 init: Controller(),
                 // You can initialize your controller here the first time. Don't use init in your other GetBuilders of same controller
                 builder: (_) => Text(
-                  'clicks: ${_.count}',
+                  'clicks: ${_.counter}',
                 )),
             ElevatedButton(
               child: Text('Next Route'),
@@ -49,6 +51,7 @@ class First extends StatelessWidget {
           child: Icon(Icons.add),
           onPressed: () {
             Get.find<Controller>().increment();
+
             //Get.find<Controller>().putCount(_count)
           }),
     );

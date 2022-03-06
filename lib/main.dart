@@ -15,7 +15,7 @@ void main() async{
       MyApp()
   );
 }
-
+final box=GetStorage();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
