@@ -1,12 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_profile/second_screen.dart';
-import 'package:getx_profile/third_screen.dart';
+import 'package:getx_profile/language/languagechange_view.dart';
+import 'package:getx_profile/src/second_screen.dart';
+import 'package:getx_profile/src/third_screen.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'counter.dart';
-import 'first_screen.dart';
+import 'language/localizationService.dart';
+import 'src/counter.dart';
+import 'src/first_screen.dart';
 import 'language.dart';
 
 void main() async{
@@ -25,12 +27,14 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       // It is not mandatory to use named routes, but dynamic urls are interesting.
       initialRoute: '/home',
+      locale:box.read("locale")!=null?box.read("locale"): LocalizationService.locale,
+      fallbackLocale: LocalizationService.fallbackLocale,
+      translations: LocalizationService(),
       defaultTransition: Transition.native,
-      translations: MyTranslations(),
-      locale: Locale('pt', 'BR'),
+
       getPages: [
         //Simple GetPage
-        GetPage(name: '/home', page: () => First()),
+        GetPage(name: '/home', page: () => HomePage()),
         // GetPage with custom transitions and bindings
         GetPage(
           name: '/second',

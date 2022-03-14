@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'main.dart';
+import '../main.dart';
 
 class Third extends GetView<ControllerX> {
   @override

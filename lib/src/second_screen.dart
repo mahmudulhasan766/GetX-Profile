@@ -1,5 +1,5 @@
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'main.dart';
+import '../main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
