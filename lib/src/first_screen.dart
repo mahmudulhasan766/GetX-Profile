@@ -4,13 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get.dart';
-import 'package:getx_profile/Language_Change/language_controller.dart';
 import 'package:getx_profile/main.dart';
 
 import 'counter.dart';
 
 class First extends StatelessWidget {
-  final controller=Get.put(LanguageController());
   @override
   Widget build(BuildContext context) {
 
@@ -22,30 +20,7 @@ class First extends StatelessWidget {
             Get.snackbar("Hi", "I'm modern snackbar${box.read("read")}");
           },
         ),
-        actions: [
-          Obx(() => DropdownButton<String>(
-              value: controller.locale.value,
-              icon: Icon(Icons.arrow_downward_outlined),
-              iconSize: 24,
-              elevation: 16,
-              style: TextStyle(color: Colors.deepPurple),
-              underline: Container(
-                height: 2,
-                color: Colors.deepPurpleAccent,
-              ),
-              onChanged: (String? newValue) {
-                controller.updateLocale(newValue!);
-              },
-              items: controller.optionsLocales.entries.map((item) {
-                return DropdownMenuItem<String>(
-                  value: item.key,
-                  child: Text(item.value['description']),
-                );
-              }).toList(),
-            ),
-          )
-        ],
-        title: Text("title".trArgs(['John']).tr),
+        title: Text("title".trArgs(['John'])),
       ),
       body: Center(
         child: Column(
