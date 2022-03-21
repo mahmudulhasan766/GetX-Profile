@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:getx_profile/src/first_screen.dart';
+import 'package:getx_profile/src/internet_connection_%20view.dart';
 import 'Language_Change/datastorage_service.dart';
 import 'Language_Change/language_controller.dart';
 import 'Language_Change/language_translation.dart';
 import 'bindings/init_bindings.dart';
+import 'controller/internet_connectivity.dart';
 
 
 void main() async {
@@ -24,6 +26,7 @@ final box=GetStorage();
 class MyApp extends StatelessWidget {
    MyApp({Key? key}) : super(key: key);
   final storage = Get.find<StorageService>();
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -33,14 +36,15 @@ class MyApp extends StatelessWidget {
           ? Locale(storage.languageCode!, storage.countryCode)
           : Locale('pt', 'BR'), // Not Get.deviceLocale
       fallbackLocale: Locale('en', 'US'),
-      initialRoute: '/home',
-      getPages: [GetPage(name: '/home', page: () => First())],
+      initialRoute: '/internetCheck',
+      getPages: [
+        GetPage(name: '/home', page: () => First()),
+        GetPage(name: '/internetCheck', page: () => InternetConnectionView())
+      ],
       initialBinding: InitialBinding(),
     );
   }
 }
-
-
 
 
 class Home extends StatelessWidget {
@@ -63,22 +67,20 @@ class Home extends StatelessWidget {
   }
 }
 
-
-
 class LanguageDropDown extends GetView<LanguageController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
           () => DropdownButton<String>(
-        value: controller.locale.value,
-        icon: Icon(Icons.arrow_downward),
-        iconSize: 24,
-        elevation: 16,
-        style: TextStyle(color: Colors.deepPurple),
-        underline: Container(
-          height: 2,
-          color: Colors.deepPurpleAccent,
-        ),
+           value: controller.locale.value,
+           icon: Icon(Icons.arrow_downward),
+           iconSize: 24,
+           elevation: 16,
+           style: TextStyle(color: Colors.deepPurple),
+           underline: Container(
+             height: 2,
+             color: Colors.deepPurpleAccent,
+           ),
         onChanged: (String? newValue) {
           controller.updateLocale(newValue!);
         },
