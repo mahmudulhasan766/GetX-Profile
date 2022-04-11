@@ -98,7 +98,7 @@ class _NahidVaiState extends State<NahidVai> {
           buildNavBarItem(Icons.card_giftcard, 1),
           buildNavBarItem(Icons.camera, 2),
           buildNavBarItem(Icons.pie_chart, 3),
-          buildNavBarItem(Icons.person, 4),
+
         ],
       ),
     );
@@ -112,69 +112,32 @@ class _NahidVaiState extends State<NahidVai> {
       },
       child: Container(
         height: 60,
-        width: MediaQuery.of(context).size.width / 5,
-        decoration: index == _currentIndex
-            ? BoxDecoration(
-            border: Border(
-              bottom: BorderSide(width: 4, color: Colors.green),
-            ),
-            gradient: LinearGradient(colors: [
-              Colors.green.withOpacity(0.3),
-              Colors.green.withOpacity(0.015),
-            ], begin: Alignment.bottomCenter, end: Alignment.topCenter)
-          // color: index == _selectedItemIndex ? Colors.green : Colors.white,
-        )
-            : BoxDecoration(),
-        child: Icon(
-          icon,
-          color: index == _currentIndex ? Colors.black : Colors.grey,
+        color: Colors.cyan.shade100,
+        width: MediaQuery.of(context).size.width / 4,
+        child:index!=_currentIndex? Icon(icon, color: index == _currentIndex ? Colors.black : Colors.grey,
+        ):Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius:BorderRadius.circular(30),
+                child: Container(
+                  alignment: Alignment.center,
+                  width: 60,
+                    height: 60,
+                    color: Colors.red,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(icon, color: index == _currentIndex ? Colors.black : Colors.grey,),
+                        Text("home")
+                      ],
+                    ))),
+          ],
         ),
-      ),
+      )
     );
   }
 
 
-  Widget _buildBottomBar(){
-    return CustomAnimatedBottomBar(
-      containerHeight: 70,
-      backgroundColor: Colors.black,
-      selectedIndex: 1,
-      showElevation: true,
-      itemCornerRadius: 24,
-      curve: Curves.easeIn,
-      onItemSelected: (index) => setState(() => _currentIndex = index),
-      items: <BottomNavyBarItem>[
-        BottomNavyBarItem(
-          icon: Icon(Icons.apps),
-          title: Text('Home'),
-          activeColor: Colors.green,
-          //inactiveColor: _inactiveColor,
-          textAlign: TextAlign.center,
-        ),
-        BottomNavyBarItem(
-          icon: Icon(Icons.people),
-          title: Text('Users'),
-          activeColor: Colors.purpleAccent,
-          inactiveColor: Colors.yellow,
-          textAlign: TextAlign.center,
-        ),
-        BottomNavyBarItem(
-          icon: Icon(Icons.message),
-          title: Text(
-            'Messages ',
-          ),
-          activeColor: Colors.pink,
-          inactiveColor: Colors.yellow,
-          textAlign: TextAlign.center,
-        ),
-        BottomNavyBarItem(
-          icon: Icon(Icons.settings),
-          title: Text('Settings'),
-          activeColor: Colors.blue,
-          inactiveColor: Colors.yellow,
-          textAlign: TextAlign.center,
-        ),
-      ],
-    );
-  }
+
 }
