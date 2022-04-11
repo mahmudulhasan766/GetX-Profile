@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_profile/language/languagechange_view.dart';
+import 'package:getx_profile/src/home_nahid.dart';
 import 'package:getx_profile/src/second_screen.dart';
 import 'package:getx_profile/src/third_screen.dart';
 import 'package:get_storage/get_storage.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
 
       getPages: [
         //Simple GetPage
-        GetPage(name: '/home', page: () => HomePage()),
+        GetPage(name: '/home', page: () => NahidVai()),
         // GetPage with custom transitions and bindings
         GetPage(
           name: '/second',
